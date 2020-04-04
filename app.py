@@ -31,7 +31,10 @@ def create_store():
 # GET /store/<sting:name>
 @app.route('/store/<string:name>')
 def get_store(name):
-    pass
+    for store in stores:
+        if store['name'] == name:
+            return jsonify(store) 
+    return jsonify({'message': 'store not found'})
 
 # GET /store
 @app.route('/store')
@@ -45,8 +48,11 @@ def create_item_in_store(name):
 
 # GET /store/<string:name>/item
 @app.route('/store/<string:name>/item')
-def get_in_store(name):
-    pass
+def get_items_in_store(name):
+    for store in stores:
+        if store['name'] == name:
+            return jsonify({'items': store['items']})
+    return jsonify({'message': 'store not found'})
 
 
 app.run(port=5000)
