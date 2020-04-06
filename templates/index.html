@@ -6,6 +6,7 @@
     <title>Store</title>
     <script type="text/javascript">
         function httpGetAsync(theUrl, callback){
+            let xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function(){
                 if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
                     callback(xmlHttp.responseText);
@@ -13,12 +14,16 @@
             xmlHttp.open("GET", theUrl, true);
             xmlHttp.send(null);
         }
+
+        httpGetAsync('http://localhost:5000/store', function(response){
+            alert(response);
+        })
     </script>
 </head>
 <body>
 
     <div id="myElement">
-
+        Hello Flask API!
     </div>
     
 </body>
